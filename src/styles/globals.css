@@ -6,43 +6,55 @@
   --text-lg: 1.25rem;
   --text-xl: 1.875rem;
   --text-2xl: 3rem;
+  
+  /* メイン：洗練されたスカイブルー (Tailwindの sky-600 近似) */
+  --primary: #0284c7;
+  --primary-foreground: #ffffff;
+
+  /* アクセント：大森様由来の深い緑 (Tailwindの emerald-700 近似) */
+  /* 明るい緑ではなく、深い緑にすることで「大企業感」が出ます */
+  --secondary: #047857;
+  --secondary-foreground: #ffffff;
+
+  /* 背景と文字色：パキッとした白と黒で信頼感を */
   --background: #ffffff;
-  --foreground: #0f172a;
+  --foreground: #0f172a; /* slate-900: 真っ黒より少し青みのある黒 */
+  
+  /* 薄いアクセント背景用（スカイブルーのごく薄い色） */
+  --muted: #f0f9ff; /* sky-50 */
+  --muted-foreground: #334155; /* slate-700 */
+  
+  /* ボーダーは極力薄く */
+  --border: #e2e8f0; /* slate-200 */
+  
   --card: #ffffff;
   --card-foreground: #0f172a;
   --popover: #ffffff;
   --popover-foreground: #0f172a;
-  --primary: #0891b2;
-  --primary-foreground: #ffffff;
-  --secondary: #10b981;
-  --secondary-foreground: #ffffff;
-  --muted: #f0fdfa;
-  --muted-foreground: #64748b;
-  --accent: #e0f2fe;
-  --accent-foreground: #0891b2;
+  --accent: #f0f9ff;
+  --accent-foreground: #0284c7;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
-  --border: #d1fae5;
   --input: transparent;
-  --input-background: #f0fdfa;
+  --input-background: #f0f9ff;
   --switch-background: #cbd5e1;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #0891b2;
-  --chart-1: #0891b2;
+  --ring: #0284c7;
+  --chart-1: #0284c7;
   --chart-2: #06b6d4;
-  --chart-3: #10b981;
+  --chart-3: #047857;
   --chart-4: #059669;
   --chart-5: #14b8a6;
   --radius: 0.75rem;
-  --sidebar: #f0fdfa;
+  --sidebar: #f0f9ff;
   --sidebar-foreground: #0f172a;
-  --sidebar-primary: #0891b2;
+  --sidebar-primary: #0284c7;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #e0f2fe;
-  --sidebar-accent-foreground: #0891b2;
-  --sidebar-border: #d1fae5;
-  --sidebar-ring: #0891b2;
+  --sidebar-accent: #f0f9ff;
+  --sidebar-accent-foreground: #0284c7;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #0284c7;
 }
 
 .dark {
@@ -130,61 +142,26 @@
 
   body {
     @apply bg-background text-foreground;
+    /* 日本語の文字詰めを有効化（これだけでプロっぽくなります） */
+    font-feature-settings: "palt";
+    /* 文字のアンチエイリアスを効かせて細く見せる */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* 文字色を真っ黒ではなく、濃いスレートグレーにして高級感を出す */
+    color: #1e293b; /* slate-800 */
   }
-}
-
-/**
- * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
- */
-@layer base {
-  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
-    h1 {
-      font-size: var(--text-2xl);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    h2 {
-      font-size: var(--text-xl);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    h3 {
-      font-size: var(--text-lg);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    h4 {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    p {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
-
-    label {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    button {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    input {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
+  
+  h1, h2, h3, h4, h5, h6 {
+    /* 見出しは詰め気味に、行間は狭く */
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+  
+  p {
+    /* 本文は読みやすく */
+    line-height: 1.75;
+    letter-spacing: 0.02em;
   }
 }
 

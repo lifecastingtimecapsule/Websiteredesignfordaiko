@@ -1,63 +1,37 @@
 import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Printer, Award, Zap, Sparkles, Factory, Users, CheckCircle2, Phone, Mail, MapPin, Calendar, Tag, Newspaper } from 'lucide-react';
+import { ArrowRight, Printer, Factory, Users, Phone, Mail, MapPin, Calendar, Tag, Newspaper, Award } from 'lucide-react';
 import { newsApi } from '../utils/api';
 import { products } from '../data/productsData';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-
-const highlights = [
-  { icon: Printer, text: 'シール・ラベル印刷専門' },
-  { icon: Award, text: '1982年創業の実績' },
-  { icon: Zap, text: '最新設備導入' },
-];
 
 const services = [
   {
     icon: Printer,
     title: 'シール・ラベル印刷',
-    description: '小ロットから大量生産まで対応',
+    description: '小ロットから大量生産まで対応可能。お客様のニーズに合わせた柔軟な生産体制を整えています。',
   },
   {
     icon: Factory,
     title: '多様な加工技術',
-    description: 'ラミネート、箔押し、型抜き等',
+    description: 'ラミネート、箔押し、型抜き等、最新設備による高度な加工技術で、付加価値の高い製品をご提供します。',
   },
   {
     icon: Users,
     title: 'トータルサポート',
-    description: 'デザインから納品まで対応',
+    description: 'デザインから納品まで、専門スタッフが一貫してサポート。お客様の課題解決をお手伝いします。',
   },
 ];
 
 const features = [
-  {
-    title: '短納期対応',
-    description: 'お急ぎのご注文にも対応',
-  },
-  {
-    title: '小ロット対応',
-    description: '少量から高品質印刷',
-  },
-  {
-    title: 'オーダーメイド',
-    description: 'カスタマイズ対応',
-  },
-  {
-    title: '環境配慮',
-    description: 'SDGs持続可能な印刷',
-  },
-  {
-    title: '最新設備',
-    description: '高性能な印刷機完備',
-  },
-  {
-    title: '品質保証',
-    description: '厳格な検品体制',
-  },
+  { title: '短納期対応', description: 'お急ぎのご注文にも柔軟に対応' },
+  { title: '小ロット対応', description: '少量から高品質印刷を実現' },
+  { title: 'オーダーメイド', description: '完全カスタマイズ対応可能' },
+  { title: '環境配慮', description: 'SDGs持続可能な印刷を推進' },
+  { title: '最新設備', description: '高性能な印刷機を完備' },
+  { title: '品質保証', description: '厳格な検品体制を構築' },
 ];
-
-
 
 const stats = [
   { value: '40+', label: '年の実績' },
@@ -87,7 +61,6 @@ export function Home() {
     try {
       const response = await newsApi.getAll();
       const articles = response.articles || [];
-      // 最新5件のみ表示
       setNews(articles.slice(0, 5));
     } catch (error) {
       console.error('Failed to load news:', error);
@@ -95,241 +68,238 @@ export function Home() {
       setIsLoadingNews(false);
     }
   };
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-emerald-50/30" />
+    <div className="min-h-screen bg-white font-sans text-slate-900">
+      {/* Hero Section: スカイブルーを大胆に使いつつ、緑をグラデーションで混ぜる */}
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.015]">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, #0891b2 1px, transparent 0)`,
-            backgroundSize: '48px 48px'
-          }} />
+        {/* 背景：白ベースだが、右上にスカイブルー、左下に緑の光を配置 */}
+        <div className="absolute inset-0 bg-white">
+          <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-sky-100/50 rounded-full blur-3xl opacity-60" />
+          <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-emerald-100/40 rounded-full blur-3xl opacity-50" />
         </div>
 
-        <div className="relative z-10 w-full h-full min-h-screen flex items-center">
-          {/* Left Content Area with Strong Diagonal Cut */}
-          <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full lg:w-[60%] min-h-screen flex items-center bg-gradient-to-br from-white via-cyan-50/30 to-emerald-50/40"
-            style={{
-              clipPath: 'polygon(0 0, 100% 0, 70% 100%, 0 100%)',
-            }}
-          >
-            <div className="w-full px-6 sm:px-12 lg:px-20 xl:px-32 py-20">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl mb-8 sm:mb-12 tracking-tight">
-                <span className="block text-slate-900 whitespace-nowrap">株式会社大幸</span>
-              </h1>
-
-              {/* Catchphrases */}
-              <div className="space-y-4 sm:space-y-6 max-w-4xl">
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                  className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-slate-800 tracking-tight whitespace-nowrap"
-                >
-                  信頼を印刷する。
-                </motion.p>
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.7 }}
-                  className="text-lg sm:text-xl lg:text-2xl text-slate-600 leading-relaxed whitespace-nowrap"
-                >
-                  名古屋から全国へ。最先端技術と職人の技で、あなたのビジネスを支えます。
-                </motion.p>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            
+            {/* 左側：テキストエリア */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-100 text-sky-700 text-sm font-medium mb-8">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+                </span>
+                Since 1982 / 株式会社 大幸
               </div>
-            </div>
-          </motion.div>
-
-          {/* Right Image Area */}
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute right-0 top-0 w-full lg:w-[55%] h-full hidden lg:block"
-            style={{
-              clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 0 100%)',
-            }}
-          >
-            <div className="relative w-full h-full">
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/20 to-emerald-600/20 z-10" />
               
-              {/* Premium Floating Orbs */}
-              <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-cyan-400/10 rounded-full blur-3xl z-10" />
-              <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-emerald-400/10 rounded-full blur-3xl z-10" />
+              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8">
+                信頼を、<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-emerald-600">
+                  未来へ刷り込む。
+                </span>
+              </h1>
               
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1744126175546-d7c5366e94f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmludGluZyUyMHByZXNzJTIwbWFjaGluZSUyMGZhY3Rvcnl8ZW58MXx8fHwxNzYzNjI5MjYzfDA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="大幸の印刷技術"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </motion.div>
+              <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl">
+                1ミリの狂いも許さない職人技術と、最新デジタル技術の融合。<br />
+                名古屋から全国へ。私たちは印刷を通じて、<br />
+                お客様のビジネスという「森」を育てます。
+              </p>
 
-          {/* Mobile Layout */}
-          <div className="lg:hidden absolute inset-0 flex flex-col">
-            <div className="flex-1 flex items-center px-6 py-12 bg-gradient-to-br from-white via-cyan-50/30 to-emerald-50/40 relative z-20">
-              <div className="w-full">
-                <h1 className="text-4xl sm:text-5xl mb-6 tracking-tight">
-                  <span className="block text-slate-900 mb-2">株式会社</span>
-                  <span className="block bg-gradient-to-r from-cyan-600 via-teal-500 to-emerald-600 bg-clip-text text-transparent">大幸</span>
-                </h1>
+              <div className="flex flex-wrap gap-4">
+                {/* メインアクション：スカイブルー */}
+                <Link
+                  to="/products"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-sky-600 text-white rounded-full font-medium transition-all hover:bg-sky-700 hover:shadow-lg hover:shadow-sky-200 hover:-translate-y-0.5"
+                >
+                  製品一覧を見る
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+                
+                {/* サブアクション：白ベース＋緑ボーダー（大森様の緑を控えめに） */}
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-emerald-700 border border-emerald-200 rounded-full font-medium transition-all hover:bg-emerald-50 hover:border-emerald-300"
+                >
+                  お問い合わせ
+                </Link>
+              </div>
+            </motion.div>
 
-                <div className="space-y-4">
-                  <p className="text-2xl sm:text-3xl text-slate-800 tracking-tight">
-                    信頼を印刷する。
-                  </p>
-                  <p className="text-lg sm:text-xl text-slate-600 leading-relaxed">
-                    名古屋から全国へ。<br />
-                    最先端技術と職人の技で、<br />
-                    あなたのビジネスを支えます。
-                  </p>
+            {/* 右側：ビジュアルエリア */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="relative"
+            >
+              {/* 画像の角丸を大きくし、枠線を消すことでモダンに */}
+              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-200/50">
+                <div className="absolute inset-0 bg-gradient-to-tr from-emerald-900/20 to-transparent z-10 mix-blend-overlay" />
+                <ImageWithFallback
+                  src="https://images.unsplash.com/photo-1562564013-0971ad28b7a4?auto=format&fit=crop&q=80&w=1000"
+                  alt="Printing Technology"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+              
+              {/* 実績カード：緑のアクセント */}
+              <div className="absolute -bottom-10 -left-10 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 hidden lg:block">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
+                    <Award className="w-6 h-6 text-emerald-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-slate-500 font-medium">創業実績</p>
+                    <p className="text-2xl font-bold text-slate-900">40 Years+</p>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="h-64 sm:h-80 relative">
-              <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10" />
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/15 to-emerald-600/15 z-10" />
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1744126175546-d7c5366e94f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmludGluZyUyMHByZXNzJTIwbWFjaGluZSUyMGZhY3Rvcnl8ZW58MXx8fHwxNzYzNjI5MjYzfDA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="大幸の印刷技術"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-8 sm:py-32 px-4 sm:px-8 lg:px-12 bg-white">
+      {/* Services Section: 枠線を消し、余白で魅せる */}
+      <section className="py-32 px-6 bg-slate-50/50">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-6 sm:mb-16"
-          >
+          <div className="text-center mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4"
+            >
+              Our Service
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              whileInView={{ opacity: 1, scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto rounded-full"
+            />
+          </div>
 
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl text-slate-900 leading-tight tracking-tight">
-              サービス
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-3 gap-4 sm:gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.15 }}
-                className="p-4 sm:p-8 rounded-3xl border-2 border-slate-200/60 bg-white shadow-lg hover:shadow-xl hover:border-blue-200 transition-all duration-500 hover:-translate-y-1"
+                transition={{ delay: index * 0.1 }}
+                className="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="w-12 sm:w-16 h-12 sm:h-16 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100/50 flex items-center justify-center mb-3 sm:mb-6">
-                  <service.icon className="w-6 sm:w-8 h-6 sm:h-8 text-blue-700" />
+                {/* アイコン背景にスカイブルー〜緑のグラデーションを薄く敷く */}
+                <div className="w-16 h-16 mb-8 rounded-2xl bg-gradient-to-br from-sky-50 to-emerald-50 flex items-center justify-center text-sky-700">
+                  <service.icon className="w-8 h-8" />
                 </div>
-                <h3 className="text-lg sm:text-2xl text-slate-900 mb-2 sm:mb-4 tracking-tight">{service.title}</h3>
-                <p className="text-sm sm:text-base text-slate-600 leading-relaxed tracking-wide">{service.description}</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-4">{service.title}</h3>
+                <p className="text-slate-600 leading-relaxed">
+                  {service.description}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-8 sm:py-32 px-4 sm:px-8 lg:px-12 bg-gradient-to-b from-slate-50/50 to-white">
+      {/* Features Grid: 2色のグラデーションで統一感 */}
+      <section className="py-32 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-6 sm:mb-16"
-          >
-            
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-tight tracking-tight">
-              選ばれる理由
-            </h2>
-          </motion.div>
+          <div className="text-center mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4"
+            >
+              Why Choose Us
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              whileInView={{ opacity: 1, scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto rounded-full"
+            />
+          </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.08 }}
-                className="p-3 sm:p-6 rounded-2xl border-2 border-slate-200/60 bg-white/90 backdrop-blur-sm shadow-lg hover:shadow-xl hover:border-blue-200 transition-all duration-500"
+                transition={{ delay: index * 0.05 }}
+                className="bg-gradient-to-br from-sky-50/50 to-emerald-50/30 p-8 rounded-2xl hover:shadow-lg transition-all duration-300"
               >
-                <div className="flex items-start gap-2 sm:gap-4">
-                  <CheckCircle2 className="w-5 sm:w-6 h-5 sm:h-6 text-blue-700 flex-shrink-0 mt-0.5 sm:mt-1" />
-                  <div>
-                    <h3 className="text-sm sm:text-lg text-slate-900 mb-1 sm:mb-2 tracking-tight">{feature.title}</h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed tracking-wide">{feature.description}</p>
-                  </div>
-                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">{feature.title}</h3>
+                <p className="text-slate-600 leading-relaxed text-sm">{feature.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Product Categories */}
-      <section className="py-8 sm:py-32 px-4 sm:px-8 lg:px-12 bg-white">
+      {/* Products Section */}
+      <section className="py-32 px-6 bg-slate-50/50">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-6 sm:mb-16"
-          >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-tight tracking-tight">
-              品一覧
-            </h2>
-          </motion.div>
+          <div className="text-center mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4"
+            >
+              Products
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              whileInView={{ opacity: 1, scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto rounded-full"
+            />
+          </div>
 
-          <div className="grid grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-8 mb-6 sm:mb-12">
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
             {products
               .filter(p => ['privacy-seal', 'anti-photography-seal', 'product-seal'].includes(p.id))
               .map((product, index) => (
               <motion.div
                 key={product.id}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
+                transition={{ delay: index * 0.1 }}
               >
-                <Link
-                  to={`/products/${product.id}`}
-                  className="block group h-full"
-                >
-                  <div className="h-full rounded-3xl border-2 border-slate-200/60 overflow-hidden shadow-lg hover:shadow-xl hover:border-blue-200 transition-all duration-500 bg-white hover:-translate-y-1">
-                    <div className="aspect-[4/3] overflow-hidden bg-slate-50">
+                <Link to={`/products/${product.id}`} className="block group">
+                  <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+                    <div className="aspect-[4/3] bg-slate-50 overflow-hidden">
                       <ImageWithFallback
                         src={product.image}
                         alt={product.title}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700 p-3 sm:p-6"
+                        className="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <div className="p-3 sm:p-6">
-                      <div className="inline-block px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-blue-50 border border-blue-200/60 mb-2 sm:mb-3">
-                        <span className="text-blue-800 text-xs sm:text-sm tracking-wide">{product.categoryName}</span>
+                    <div className="p-6">
+                      <div className="inline-block px-3 py-1 bg-gradient-to-r from-sky-100 to-emerald-100 text-sky-700 text-xs font-medium rounded-full mb-3">
+                        {product.categoryName}
                       </div>
-                      <h3 className="text-base sm:text-2xl text-slate-900 group-hover:text-blue-800 transition-colors duration-300 tracking-tight mb-2 sm:mb-3">
+                      <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-sky-600 transition-colors">
                         {product.title}
                       </h3>
-                      <p className="text-xs sm:text-base text-slate-600 leading-relaxed tracking-wide line-clamp-2">
+                      <p className="text-slate-600 text-sm leading-relaxed line-clamp-2">
                         {product.description}
                       </p>
                     </div>
@@ -343,12 +313,11 @@ export function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
             className="text-center"
           >
             <Link
               to="/products"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-cyan-600 to-teal-600 text-white rounded-2xl hover:from-cyan-500 hover:to-teal-500 transition-all duration-500 shadow-xl shadow-cyan-600/30 hover:shadow-2xl hover:shadow-cyan-600/50 tracking-wide"
+              className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-sky-600 to-emerald-600 text-white rounded-full font-medium hover:from-sky-700 hover:to-emerald-700 transition-all hover:shadow-lg hover:shadow-sky-200 hover:-translate-y-0.5"
             >
               <span>すべての製品を見る</span>
               <ArrowRight className="w-5 h-5" />
@@ -357,23 +326,23 @@ export function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-8 sm:py-32 px-4 sm:px-8 lg:px-12 bg-gradient-to-b from-slate-50/50 to-white">
+      {/* Stats Section: スカイブルーと緑の対比 */}
+      <section className="py-32 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-3 gap-3 sm:gap-8">
+          <div className="grid md:grid-cols-3 gap-12">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.15 }}
-                className="text-center p-4 sm:p-10 rounded-3xl border-2 border-slate-200/60 bg-white shadow-lg hover:shadow-xl hover:border-blue-200 transition-all duration-500"
+                transition={{ delay: index * 0.1 }}
+                className="text-center"
               >
-                <div className="text-3xl sm:text-6xl bg-gradient-to-r from-blue-900 via-blue-700 to-blue-600 bg-clip-text text-transparent mb-2 sm:mb-4 tracking-tight">
+                <div className="text-6xl lg:text-7xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-emerald-600">
                   {stat.value}
                 </div>
-                <div className="text-sm sm:text-lg text-slate-600 tracking-wide">{stat.label}</div>
+                <div className="text-lg text-slate-600">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -381,63 +350,66 @@ export function Home() {
       </section>
 
       {/* News Section */}
-      <section className="py-8 sm:py-32 px-4 sm:px-8 lg:px-12 bg-white">
+      <section className="py-32 px-6 bg-slate-50/50">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-6 sm:mb-16"
-          >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-tight tracking-tight">
-              最新ニュース
-            </h2>
-          </motion.div>
-
-          {isLoadingNews ? (
-            <div className="text-center py-12">
-              <div className="w-16 h-16 border-4 border-blue-700 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-              <p className="text-slate-600 tracking-wide">読み込み中...</p>
-            </div>
-          ) : news.length === 0 ? (
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
+          <div className="text-center mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="text-center py-16"
+              className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4"
             >
-              <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-slate-50 to-slate-100/50 flex items-center justify-center mx-auto mb-6">
-                <Newspaper className="w-12 h-12 text-slate-400" />
+              Latest News
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              whileInView={{ opacity: 1, scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto rounded-full"
+            />
+          </div>
+
+          {isLoadingNews ? (
+            <div className="text-center py-20">
+              <div className="w-12 h-12 border-2 border-sky-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+              <p className="text-slate-600">読み込み中...</p>
+            </div>
+          ) : news.length === 0 ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center py-20"
+            >
+              <div className="w-20 h-20 bg-gradient-to-br from-sky-50 to-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Newspaper className="w-10 h-10 text-sky-600" />
               </div>
-              <h3 className="text-2xl text-slate-900 mb-4 tracking-tight">まだ記事がありません</h3>
-              <p className="text-slate-600 tracking-wide">新しい記事が投稿されるまでお待ちください</p>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">まだ記事がありません</h3>
+              <p className="text-slate-600">新しい記事が投稿されるまでお待ちください</p>
             </motion.div>
           ) : (
             <>
-              <div className={`grid ${news.length % 2 === 0 ? 'grid-cols-2' : 'grid-cols-3'} lg:grid-cols-3 gap-3 sm:gap-8 mb-6 sm:mb-12`}>
+              <div className={`grid ${news.length >= 2 ? 'md:grid-cols-2' : ''} ${news.length >= 3 ? 'lg:grid-cols-3' : ''} gap-8 mb-16`}>
                 {news.map((article, index) => (
                   <motion.div
                     key={article.id}
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: index * 0.1 }}
+                    transition={{ delay: index * 0.1 }}
                   >
-                    <Link
-                      to={`/news/${article.id}`}
-                      className="block group h-full"
-                    >
-                      <div className="h-full p-3 sm:p-6 rounded-3xl border-2 border-slate-200/60 bg-white shadow-lg hover:shadow-xl hover:border-blue-200 transition-all duration-500 hover:-translate-y-1">
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                          <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-blue-50 border border-blue-200/60">
-                            <Tag className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-blue-700" />
-                            <span className="text-blue-800 text-xs sm:text-sm tracking-wide">{article.category}</span>
+                    <Link to={`/news/${article.id}`} className="block group">
+                      <div className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-sky-100 to-emerald-100 rounded-full">
+                            <Tag className="w-3 h-3 text-sky-700" />
+                            <span className="text-sky-700 text-xs font-medium">{article.category}</span>
                           </div>
-                          <div className="flex items-center gap-1 sm:gap-1.5 text-slate-500 text-xs sm:text-sm">
-                            <Calendar className="w-3 sm:w-4 h-3 sm:h-4" />
-                            <span className="tracking-wide">
+                          <div className="flex items-center gap-1 text-slate-500 text-sm">
+                            <Calendar className="w-4 h-4" />
+                            <span>
                               {new Date(article.date).toLocaleDateString('ja-JP', {
                                 year: 'numeric',
                                 month: '2-digit',
@@ -446,22 +418,17 @@ export function Home() {
                             </span>
                           </div>
                         </div>
-
-                        <h3 className="text-xl text-slate-900 mb-3 group-hover:text-blue-800 transition-colors duration-300 tracking-tight line-clamp-2">
+                        <h3 className="text-xl font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-sky-600 transition-colors">
                           {article.title}
                         </h3>
-
-                        <p className="text-slate-600 mb-4 line-clamp-3 leading-relaxed tracking-wide">
+                        <p className="text-slate-600 text-sm leading-relaxed line-clamp-3 mb-4">
                           {article.content}
                         </p>
-
-                        <div className="flex items-center justify-between pt-4 border-t border-slate-200/60">
-                          <span className="text-slate-500 text-sm tracking-wide">
-                            {article.author}
-                          </span>
-                          <div className="flex items-center gap-2 text-blue-700 group-hover:gap-3 transition-all duration-300">
-                            <span className="text-sm tracking-wide">続きを読む</span>
-                            <ArrowRight className="w-4 h-4" />
+                        <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                          <span className="text-slate-500 text-sm">{article.author}</span>
+                          <div className="flex items-center gap-2 text-sky-600">
+                            <span className="text-sm font-medium">続きを読む</span>
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                           </div>
                         </div>
                       </div>
@@ -474,12 +441,11 @@ export function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
                 className="text-center"
               >
                 <Link
                   to="/news"
-                  className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-cyan-600 to-teal-600 text-white rounded-2xl hover:from-cyan-500 hover:to-teal-500 transition-all duration-500 shadow-xl shadow-cyan-600/30 hover:shadow-2xl hover:shadow-cyan-600/50 tracking-wide"
+                  className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-sky-600 to-emerald-600 text-white rounded-full font-medium hover:from-sky-700 hover:to-emerald-700 transition-all hover:shadow-lg hover:shadow-sky-200 hover:-translate-y-0.5"
                 >
                   <span>すべてのニュースを見る</span>
                   <ArrowRight className="w-5 h-5" />
@@ -490,67 +456,73 @@ export function Home() {
         </div>
       </section>
 
-      {/* Contact Info Section */}
-      <section className="py-8 sm:py-32 px-6 sm:px-8 lg:px-12 bg-white">
+      {/* Contact Section */}
+      <section className="py-32 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-6 sm:mb-16"
-          >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl text-slate-900 leading-tight tracking-tight">
-              お問い合わせ
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-3 md:grid-cols-3 gap-3 sm:gap-8 mb-6 sm:mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
+          <div className="text-center mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="p-3 sm:p-5 rounded-3xl border-2 border-slate-200/60 bg-white shadow-lg hover:shadow-xl transition-all duration-500 text-center"
+              className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4"
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100/50 flex items-center justify-center mx-auto mb-2 sm:mb-3">
-                <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-blue-700" />
+              Contact
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              whileInView={{ opacity: 1, scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto rounded-full"
+            />
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-sky-50/50 to-emerald-50/30 p-10 rounded-3xl text-center"
+            >
+              <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <Phone className="w-7 h-7 text-sky-600" />
               </div>
-              <h3 className="text-xs sm:text-sm text-slate-900 mb-1 sm:mb-2">お電話</h3>
-              <a href="tel:052-903-8273" className="text-sm sm:text-lg text-blue-800 hover:text-blue-900 transition-colors">
+              <h3 className="text-sm text-slate-700 font-medium mb-3 tracking-wider uppercase">お電話</h3>
+              <a href="tel:052-903-8273" className="text-2xl font-bold text-slate-900 hover:text-sky-600 transition-colors block mb-2">
                 052-903-8273
               </a>
-              <p className="text-slate-600 text-xs mt-1 sm:mt-2">平日 9:00 - 18:00</p>
+              <p className="text-slate-600 text-sm">平日 9:00 - 18:00</p>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.15 }}
-              className="p-3 sm:p-5 rounded-3xl border-2 border-slate-200/60 bg-white shadow-lg hover:shadow-xl transition-all duration-500 text-center"
+              transition={{ delay: 0.1 }}
+              className="bg-gradient-to-br from-sky-50/50 to-emerald-50/30 p-10 rounded-3xl text-center"
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100/50 flex items-center justify-center mx-auto mb-2 sm:mb-3">
-                <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-blue-700" />
+              <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <Mail className="w-7 h-7 text-sky-600" />
               </div>
-              <h3 className="text-xs sm:text-sm text-slate-900 mb-1 sm:mb-2">メール</h3>
-              <a href="mailto:daikoinfo@daiko-lsf.jp" className="text-xs sm:text-sm text-blue-800 hover:text-blue-900 transition-colors break-all">
+              <h3 className="text-sm text-slate-700 font-medium mb-3 tracking-wider uppercase">メール</h3>
+              <a href="mailto:daikoinfo@daiko-lsf.jp" className="text-lg font-bold text-slate-900 hover:text-sky-600 transition-colors break-all">
                 daikoinfo@daiko-lsf.jp
               </a>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="p-3 sm:p-5 rounded-3xl border-2 border-slate-200/60 bg-white shadow-lg hover:shadow-xl transition-all duration-500 text-center"
+              transition={{ delay: 0.2 }}
+              className="bg-gradient-to-br from-sky-50/50 to-emerald-50/30 p-10 rounded-3xl text-center"
             >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100/50 flex items-center justify-center mx-auto mb-2 sm:mb-3">
-                <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-blue-700" />
+              <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <MapPin className="w-7 h-7 text-sky-600" />
               </div>
-              <h3 className="text-xs sm:text-sm text-slate-900 mb-1 sm:mb-2">所在地</h3>
-              <p className="text-slate-700 text-xs sm:text-sm">
+              <h3 className="text-sm text-slate-700 font-medium mb-3 tracking-wider uppercase">所在地</h3>
+              <p className="text-slate-900 font-medium leading-relaxed">
                 〒462-0034<br />
                 名古屋市北区天道町4丁目11
               </p>
@@ -561,12 +533,11 @@ export function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
             className="text-center"
           >
             <Link
               to="/contact"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-cyan-600 to-teal-600 text-white rounded-2xl hover:from-cyan-500 hover:to-teal-500 transition-all duration-500 shadow-xl shadow-cyan-600/30 hover:shadow-2xl hover:shadow-cyan-600/50 tracking-wide"
+              className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-sky-600 to-emerald-600 text-white rounded-full font-medium hover:from-sky-700 hover:to-emerald-700 transition-all hover:shadow-lg hover:shadow-sky-200 hover:-translate-y-0.5"
             >
               <span>お問い合わせフォーム</span>
               <ArrowRight className="w-5 h-5" />
