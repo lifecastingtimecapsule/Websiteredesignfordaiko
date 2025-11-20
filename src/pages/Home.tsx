@@ -87,7 +87,7 @@ export function Home() {
             >
               <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8 text-slate-900">
                 一枚に、<br />
-                <span className="text-sky-500">創業からの<br />誇りを込めて</span>
+                <span className="text-sky-500">誇りを込めて</span>
               </h1>
               
               <p className="text-base sm:text-lg text-slate-600 mb-10 leading-relaxed max-w-xl tracking-wider">
