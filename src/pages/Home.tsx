@@ -6,6 +6,7 @@ import { newsApi } from '../utils/api';
 import { products } from '../data/productsData';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import heroPrintingImg from '../assets/hero-printing.jpg';
+import heroFactoryImg from '../assets/hero-factory.jpg';
 
 const services = [
   {
@@ -114,18 +115,26 @@ export function Home() {
               </div>
             </motion.div>
 
+            {/* 右側の画像：斜めに配置して白いフィルターをかける */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+              animate={{ opacity: 1, scale: 1, rotate: -3 }}
+              transition={{ duration: 1, delay: 0.3 }}
               className="relative hidden lg:block"
             >
-              <div className="relative rounded-[3rem] overflow-hidden" style={{boxShadow: '0 20px 80px -10px rgba(56, 189, 248, 0.25)'}}>
+              <div className="relative overflow-hidden rounded-[2rem] shadow-2xl" style={{ transform: 'rotate(-3deg)' }}>
+                {/* 白いフィルター */}
+                <div className="absolute inset-0 bg-white/30 backdrop-blur-[2px] z-10 pointer-events-none" />
+                
+                {/* 工場画像 */}
                 <ImageWithFallback
-                  src={heroPrintingImg}
-                  alt="Printing Technology"
+                  src={heroFactoryImg}
+                  alt="Printing Factory"
                   className="w-full h-auto object-cover"
                 />
+                
+                {/* 追加の装飾 */}
+                <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white/40 to-transparent z-10 pointer-events-none" />
               </div>
             </motion.div>
           </div>
@@ -133,9 +142,9 @@ export function Home() {
       </section>
 
       {/* --- Stats Section: ここで「会社の実績」として緑を投入 --- */}
-      <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
-        {/* 緑の光を背景に入れて「大森（森）」を演出 */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-emerald-900/20 blur-[100px] rounded-full pointer-events-none" />
+      <section className="py-24 bg-white text-slate-900 relative overflow-hidden">
+        {/* 青の光を背景に */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl bg-sky-100/60 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
@@ -147,10 +156,10 @@ export function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <div className="text-5xl lg:text-6xl font-bold mb-2 text-emerald-400">
+                <div className="text-5xl lg:text-6xl font-bold mb-2 text-sky-600">
                   {stat.value}
                 </div>
-                <div className="text-white text-base uppercase tracking-wide">{stat.label}</div>
+                <div className="text-slate-900 text-base uppercase tracking-wide">{stat.label}</div>
                 <div className="text-slate-500 text-[10px] mt-1.5 tracking-widest uppercase">{stat.sub}</div>
               </motion.div>
             ))}
