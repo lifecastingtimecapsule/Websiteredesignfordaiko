@@ -71,11 +71,7 @@ export function ModernHeader({ isLoaded = true }: { isLoaded?: boolean }) {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'bg-white/98 backdrop-blur-xl border-b border-slate-200/60 shadow-lg shadow-slate-200/50'
-            : 'bg-white/95 backdrop-blur-md'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white border-b border-slate-100`}
       >
         <nav className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="flex h-20 sm:h-24 items-center justify-between">
