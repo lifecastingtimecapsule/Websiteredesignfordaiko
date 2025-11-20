@@ -5,8 +5,6 @@ import { ArrowRight, Printer, Factory, Users, Phone, Mail, MapPin, Calendar, Tag
 import { newsApi } from '../utils/api';
 import { products } from '../data/productsData';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import heroPrintingImg from '../assets/hero-printing.jpg';
-import heroFactoryImg from '../assets/hero-factory.jpg';
 
 const services = [
   {
@@ -120,17 +118,17 @@ export function Home() {
               initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
               animate={{ opacity: 1, scale: 1, rotate: -3 }}
               transition={{ duration: 1, delay: 0.3 }}
-              className="relative hidden lg:block"
+              className="relative hidden lg:block h-[600px]"
             >
-              <div className="relative overflow-hidden rounded-[2rem] shadow-2xl" style={{ transform: 'rotate(-3deg)' }}>
+              <div className="relative overflow-hidden rounded-[2rem] shadow-2xl h-full w-full" style={{ transform: 'rotate(-3deg)' }}>
                 {/* 白いフィルター */}
                 <div className="absolute inset-0 bg-white/30 backdrop-blur-[2px] z-10 pointer-events-none" />
                 
                 {/* 工場画像 */}
                 <ImageWithFallback
-                  src={heroFactoryImg}
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1000" 
                   alt="Printing Factory"
-                  className="w-full h-auto object-cover"
+                  className="w-full h-full object-cover"
                 />
                 
                 {/* 追加の装飾 */}
