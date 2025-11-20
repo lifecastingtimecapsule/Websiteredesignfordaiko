@@ -23,21 +23,24 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // セッションストレージで初回アクセスかどうかを判定
+    // 開発中: 毎回スプラッシュを表示する場合はコメントアウト
+    // 本番環境: 初回のみ表示する場合はコメントを外す
+    /*
     const hasVisited = sessionStorage.getItem('hasVisited');
     
     if (hasVisited) {
-      // 既に訪問済みの場合はスプラッシュをスキップ
       setIsLoading(false);
-    } else {
-      // 初回訪問の場合はスプラッシュを表示
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-        sessionStorage.setItem('hasVisited', 'true');
-      }, 2000);
-
-      return () => clearTimeout(timer);
+      return;
     }
+    */
+
+    // スプラッシュ表示時間
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      // sessionStorage.setItem('hasVisited', 'true'); // 本番環境で有効化
+    }, 2000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
