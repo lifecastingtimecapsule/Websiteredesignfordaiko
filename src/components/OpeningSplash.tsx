@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import logoImage from '../assets/daiko-logo.png';
+import { LogoBrand } from './LogoBrand';
 
 export function OpeningSplash({ onComplete }: { onComplete: () => void }) {
   return (
@@ -10,17 +10,8 @@ export function OpeningSplash({ onComplete }: { onComplete: () => void }) {
       transition={{ duration: 0.5, delay: 1.5 }}
       onAnimationComplete={onComplete}
     >
-      <div className="relative w-64 md:w-96">
-        <motion.img
-          src={logoImage}
-          alt="DAIKO"
-          className="w-full h-auto object-contain"
-          layoutId="daiko-brand-logo"
-          transition={{
-            duration: 1.2,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        />
+      <div className="relative w-full max-w-2xl px-8">
+        <LogoBrand layoutId="daiko-brand-logo" size="large" />
       </div>
     </motion.div>
   );

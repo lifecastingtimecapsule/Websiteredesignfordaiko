@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import logoImage from '../assets/daiko-logo.png';
+import { LogoBrand } from './LogoBrand';
 
 const navigation = [
   { name: 'ホーム', href: '/' },
@@ -79,17 +79,8 @@ export function ModernHeader({ isLoaded = true }: { isLoaded?: boolean }) {
       >
         <nav className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="flex h-20 sm:h-24 items-center justify-between">
-            <Link to="/" onClick={scrollToTop} className="relative z-50 block w-32 sm:w-40">
-              <motion.img 
-                src={logoImage}
-                alt="株式会社 大幸"
-                className="w-full h-auto object-contain"
-                layoutId="daiko-brand-logo"
-                transition={{
-                  duration: 1.2,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              />
+            <Link to="/" onClick={scrollToTop} className="relative z-50 block">
+              <LogoBrand layoutId="daiko-brand-logo" size="small" />
             </Link>
 
             {/* Menu button - always visible */}
