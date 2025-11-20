@@ -5,6 +5,7 @@ import { ArrowRight, Printer, Factory, Users, Phone, Mail, MapPin, Calendar, Tag
 import { newsApi } from '../utils/api';
 import { products } from '../data/productsData';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import heroPrintingImg from '../assets/hero-printing.jpg';
 
 const services = [
   {
@@ -84,17 +85,12 @@ export function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 text-sky-700 text-[10px] font-medium mb-8 tracking-widest uppercase">
-                <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />
-                Since 1982
-              </div>
-              
               <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8 text-slate-900">
-                信頼を、<br />
-                <span className="text-sky-500">未来へ刷り込む。</span>
+                一枚に、<br />
+                <span className="text-sky-500">創業からの<br />誇りを込めて</span>
               </h1>
               
-              <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl">
+              <p className="text-base sm:text-lg text-slate-600 mb-10 leading-relaxed max-w-xl tracking-wider">
                 1ミリの狂いも許さない職人技術と、最新デジタル技術の融合。<br />
                 名古屋から全国へ。お客様のビジネスを加速させます。
               </p>
@@ -126,7 +122,7 @@ export function Home() {
             >
               <div className="relative rounded-[3rem] overflow-hidden" style={{boxShadow: '0 20px 80px -10px rgba(56, 189, 248, 0.25)'}}>
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1562564013-0971ad28b7a4?auto=format&fit=crop&q=80&w=1000"
+                  src={heroPrintingImg}
                   alt="Printing Technology"
                   className="w-full h-auto object-cover"
                 />
@@ -251,7 +247,7 @@ export function Home() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div>
               <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Products</h2>
-              <p className="text-slate-600">多様なニーズに応える製品ラインナップ</p>
+              <p className="text-slate-600">多様なニズに応える製品ラインナップ</p>
             </div>
             <Link to="/products" className="text-sky-600 font-bold flex items-center gap-2 hover:text-sky-700 transition-colors">
               VIEW ALL <ArrowRight className="w-4 h-4" />
