@@ -34,9 +34,9 @@ const features = [
 ];
 
 const stats = [
-  { value: '40+', label: '年の実績' },
-  { value: '1000+', label: '企業様との取引' },
-  { value: '100+', label: '種類の製品' },
+  { value: '40+', label: '年の実績', sub: 'Years of Excellence' },
+  { value: '1000+', label: '企業様との取引', sub: 'Corporate Partners' },
+  { value: '100+', label: '種類の製品', sub: 'Product Variations' },
 ];
 
 interface NewsArticle {
@@ -70,109 +70,106 @@ export function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900">
-      {/* Hero Section: スカイブルーを大胆に使いつつ、緑をグラデーションで混ぜる */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <div className="min-h-screen bg-white font-sans text-slate-900 overflow-hidden">
+      
+      {/* --- Hero Section: スカイブルー全開で「空」を表現 --- */}
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-40 px-6">
+        {/* 背景：青い光のみでシンプルに */}
+        <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-sky-100/60 rounded-full blur-[120px] -z-10" />
         
-        {/* 背景：白ベースだが、右上にスカイブルー、左下に緑の光を配置 */}
-        <div className="absolute inset-0 bg-white">
-          <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-sky-100/50 rounded-full blur-3xl opacity-60" />
-          <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-emerald-100/40 rounded-full blur-3xl opacity-50" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+        <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            
-            {/* 左側：テキストエリア */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 border border-sky-100 text-sky-700 text-sm font-medium mb-8">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
-                </span>
-                Since 1982 / 株式会社 大幸
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 text-sky-700 text-xs font-medium mb-8">
+                <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />
+                Printing Technology Since 1982
               </div>
               
-              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8">
+              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8 text-slate-900">
                 信頼を、<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-emerald-600">
-                  未来へ刷り込む。
-                </span>
+                <span className="text-sky-500">未来へ刷り込む。</span>
               </h1>
               
               <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl">
                 1ミリの狂いも許さない職人技術と、最新デジタル技術の融合。<br />
-                名古屋から全国へ。私たちは印刷を通じて、<br />
-                お客様のビジネスという「森」を育てます。
+                名古屋から全国へ。お客様のビジネスを加速させます。
               </p>
 
               <div className="flex flex-wrap gap-4">
-                {/* メインアクション：スカイブルー */}
+                {/* メインボタン：鮮やかなスカイブルー */}
                 <Link
                   to="/products"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-sky-600 text-white rounded-full font-medium transition-all hover:bg-sky-700 hover:shadow-lg hover:shadow-sky-200 hover:-translate-y-0.5"
+                  className="group inline-flex items-center justify-center px-8 py-4 bg-sky-500 text-white rounded-full font-bold transition-all hover:bg-sky-600 hover:shadow-lg hover:shadow-sky-200 hover:-translate-y-1"
                 >
-                  製品一覧を見る
-                  <ArrowRight className="ml-2 w-4 h-4" />
+                  製品一覧を見る <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 
-                {/* サブアクション：白ベース＋緑ボーダー（大森様の緑を控えめに） */}
+                {/* サブボタン：シンプルに */}
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-emerald-700 border border-emerald-200 rounded-full font-medium transition-all hover:bg-emerald-50 hover:border-emerald-300"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-full font-medium transition-all hover:bg-slate-50"
                 >
                   お問い合わせ
                 </Link>
               </div>
             </motion.div>
 
-            {/* 右側：ビジュアルエリア */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="relative"
+              className="relative hidden lg:block"
             >
-              {/* 画像の角丸を大きくし、枠線を消すことでモダンに */}
-              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-200/50">
-                <div className="absolute inset-0 bg-gradient-to-tr from-emerald-900/20 to-transparent z-10 mix-blend-overlay" />
+              <div className="relative rounded-[3rem] overflow-hidden shadow-2xl shadow-sky-900/10">
                 <ImageWithFallback
                   src="https://images.unsplash.com/photo-1562564013-0971ad28b7a4?auto=format&fit=crop&q=80&w=1000"
                   alt="Printing Technology"
                   className="w-full h-auto object-cover"
                 />
               </div>
-              
-              {/* 実績カード：緑のアクセント */}
-              <div className="absolute -bottom-10 -left-10 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 hidden lg:block">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
-                    <Award className="w-6 h-6 text-emerald-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-slate-500 font-medium">創業実績</p>
-                    <p className="text-2xl font-bold text-slate-900">40 Years+</p>
-                  </div>
-                </div>
-              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Services Section: 枠線を消し、余白で魅せる */}
+      {/* --- Stats Section: ここで「会社の実績」として緑を投入 --- */}
+      <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
+        {/* 緑の光を背景に入れて「大森（森）」を演出 */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-emerald-900/20 blur-[100px] rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <div className="text-5xl lg:text-6xl font-bold mb-2 text-emerald-400">
+                  {stat.value}
+                </div>
+                <div className="text-slate-400 text-sm uppercase tracking-wider">{stat.label}</div>
+                <div className="text-slate-500 text-xs mt-1">{stat.sub}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- Services Section: 青と白でクリーンに --- */}
       <section className="py-32 px-6 bg-slate-50/50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+          <div className="mb-20 text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
               className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4"
             >
               Our Service
@@ -181,12 +178,12 @@ export function Home() {
               initial={{ opacity: 0, scaleX: 0 }}
               whileInView={{ opacity: 1, scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto rounded-full"
+              transition={{ delay: 0.2 }}
+              className="w-12 h-1 bg-sky-500 mx-auto rounded-full"
             />
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-12">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -194,14 +191,13 @@ export function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-shadow duration-300"
+                className="group text-center"
               >
-                {/* アイコン背景にスカイブルー〜緑のグラデーションを薄く敷く */}
-                <div className="w-16 h-16 mb-8 rounded-2xl bg-gradient-to-br from-sky-50 to-emerald-50 flex items-center justify-center text-sky-700">
+                <div className="w-20 h-20 mb-6 rounded-full bg-white mx-auto flex items-center justify-center text-sky-500 shadow-md group-hover:scale-110 transition-transform duration-300">
                   <service.icon className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-4">{service.title}</h3>
-                <p className="text-slate-600 leading-relaxed">
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
+                <p className="text-slate-600 leading-relaxed text-sm">
                   {service.description}
                 </p>
               </motion.div>
@@ -210,15 +206,14 @@ export function Home() {
         </div>
       </section>
 
-      {/* Features Grid: 2色のグラデーションで統一感 */}
+      {/* --- Features Section --- */}
       <section className="py-32 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+          <div className="mb-20 text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
               className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4"
             >
               Why Choose Us
@@ -227,8 +222,8 @@ export function Home() {
               initial={{ opacity: 0, scaleX: 0 }}
               whileInView={{ opacity: 1, scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto rounded-full"
+              transition={{ delay: 0.2 }}
+              className="w-12 h-1 bg-sky-500 mx-auto rounded-full"
             />
           </div>
 
@@ -240,7 +235,7 @@ export function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="bg-gradient-to-br from-sky-50/50 to-emerald-50/30 p-8 rounded-2xl hover:shadow-lg transition-all duration-300"
+                className="bg-slate-50 p-8 rounded-2xl hover:shadow-lg transition-all duration-300"
               >
                 <h3 className="text-lg font-bold text-slate-900 mb-3">{feature.title}</h3>
                 <p className="text-slate-600 leading-relaxed text-sm">{feature.description}</p>
@@ -250,29 +245,20 @@ export function Home() {
         </div>
       </section>
 
-      {/* Products Section */}
+      {/* --- Products Section --- */}
       <section className="py-32 px-6 bg-slate-50/50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4"
-            >
-              Products
-            </motion.h2>
-            <motion.div
-              initial={{ opacity: 0, scaleX: 0 }}
-              whileInView={{ opacity: 1, scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto rounded-full"
-            />
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Products</h2>
+              <p className="text-slate-600">多様なニーズに応える製品ラインナップ</p>
+            </div>
+            <Link to="/products" className="text-sky-600 font-bold flex items-center gap-2 hover:text-sky-700 transition-colors">
+              VIEW ALL <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="grid md:grid-cols-3 gap-8">
             {products
               .filter(p => ['privacy-seal', 'anti-photography-seal', 'product-seal'].includes(p.id))
               .map((product, index) => (
@@ -284,22 +270,19 @@ export function Home() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Link to={`/products/${product.id}`} className="block group">
-                  <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
-                    <div className="aspect-[4/3] bg-slate-50 overflow-hidden">
+                  <div className="bg-white rounded-[2rem] overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-sky-100/50">
+                    <div className="aspect-[4/3] p-8 flex items-center justify-center bg-slate-50">
                       <ImageWithFallback
                         src={product.image}
                         alt={product.title}
-                        className="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <div className="p-6">
-                      <div className="inline-block px-3 py-1 bg-gradient-to-r from-sky-100 to-emerald-100 text-sky-700 text-xs font-medium rounded-full mb-3">
-                        {product.categoryName}
-                      </div>
-                      <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-sky-600 transition-colors">
+                    <div className="px-8 pb-8">
+                      <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">
                         {product.title}
                       </h3>
-                      <p className="text-slate-600 text-sm leading-relaxed line-clamp-2">
+                      <p className="text-slate-500 text-sm line-clamp-2">
                         {product.description}
                       </p>
                     </div>
@@ -308,48 +291,51 @@ export function Home() {
               </motion.div>
             ))}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <Link
-              to="/products"
-              className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-sky-600 to-emerald-600 text-white rounded-full font-medium hover:from-sky-700 hover:to-emerald-700 transition-all hover:shadow-lg hover:shadow-sky-200 hover:-translate-y-0.5"
-            >
-              <span>すべての製品を見る</span>
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </motion.div>
         </div>
       </section>
 
-      {/* Stats Section: スカイブルーと緑の対比 */}
-      <section className="py-32 px-6 bg-white">
+      {/* --- Company / SDGs Link: 緑を使って「会社」へ誘導 --- */}
+      <section className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-12">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-6xl lg:text-7xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-emerald-600">
-                  {stat.value}
-                </div>
-                <div className="text-lg text-slate-600">{stat.label}</div>
-              </motion.div>
-            ))}
+          <div className="grid md:grid-cols-2 gap-8">
+            <Link to="/company" className="relative group overflow-hidden rounded-[2rem] bg-emerald-900 h-80 flex items-center p-10">
+              <div className="absolute inset-0 opacity-40 group-hover:opacity-30 transition-opacity">
+                <ImageWithFallback 
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1000" 
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                  alt="Company"
+                />
+              </div>
+              <div className="relative z-10">
+                <h3 className="text-3xl font-bold text-white mb-4">Company</h3>
+                <p className="text-emerald-100 mb-6">創業40年以上の歴史と信頼。<br/>株式会社大幸について。</p>
+                <span className="inline-flex items-center text-white font-bold border-b border-emerald-500 pb-1">
+                  会社情報を見る <ArrowRight className="ml-2 w-4 h-4" />
+                </span>
+              </div>
+            </Link>
+
+            <Link to="/sdgs" className="relative group overflow-hidden rounded-[2rem] bg-sky-900 h-80 flex items-center p-10">
+              <div className="absolute inset-0 opacity-40 group-hover:opacity-30 transition-opacity">
+                <ImageWithFallback 
+                  src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=1000" 
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                  alt="SDGs"
+                />
+              </div>
+              <div className="relative z-10">
+                <h3 className="text-3xl font-bold text-white mb-4">SDGs</h3>
+                <p className="text-sky-100 mb-6">環境と調和する、<br/>持続可能なモノづくり。</p>
+                <span className="inline-flex items-center text-white font-bold border-b border-sky-500 pb-1">
+                  取り組みを見る <ArrowRight className="ml-2 w-4 h-4" />
+                </span>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* News Section */}
+      {/* --- News Section --- */}
       <section className="py-32 px-6 bg-slate-50/50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
@@ -357,7 +343,6 @@ export function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
               className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4"
             >
               Latest News
@@ -366,8 +351,8 @@ export function Home() {
               initial={{ opacity: 0, scaleX: 0 }}
               whileInView={{ opacity: 1, scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto rounded-full"
+              transition={{ delay: 0.2 }}
+              className="w-12 h-1 bg-sky-500 mx-auto rounded-full"
             />
           </div>
 
@@ -383,8 +368,8 @@ export function Home() {
               viewport={{ once: true }}
               className="text-center py-20"
             >
-              <div className="w-20 h-20 bg-gradient-to-br from-sky-50 to-emerald-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Newspaper className="w-10 h-10 text-sky-600" />
+              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
+                <Newspaper className="w-10 h-10 text-sky-500" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-4">まだ記事がありません</h3>
               <p className="text-slate-600">新しい記事が投稿されるまでお待ちください</p>
@@ -401,10 +386,10 @@ export function Home() {
                     transition={{ delay: index * 0.1 }}
                   >
                     <Link to={`/news/${article.id}`} className="block group">
-                      <div className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300">
+                      <div className="bg-white rounded-[2rem] p-8 shadow-sm hover:shadow-xl transition-all duration-300">
                         <div className="flex items-center gap-3 mb-4">
-                          <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-sky-100 to-emerald-100 rounded-full">
-                            <Tag className="w-3 h-3 text-sky-700" />
+                          <div className="inline-flex items-center gap-2 px-3 py-1 bg-sky-50 rounded-full">
+                            <Tag className="w-3 h-3 text-sky-600" />
                             <span className="text-sky-700 text-xs font-medium">{article.category}</span>
                           </div>
                           <div className="flex items-center gap-1 text-slate-500 text-sm">
@@ -445,7 +430,7 @@ export function Home() {
               >
                 <Link
                   to="/news"
-                  className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-sky-600 to-emerald-600 text-white rounded-full font-medium hover:from-sky-700 hover:to-emerald-700 transition-all hover:shadow-lg hover:shadow-sky-200 hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-3 px-10 py-4 bg-sky-500 text-white rounded-full font-medium hover:bg-sky-600 transition-all hover:shadow-lg hover:shadow-sky-200 hover:-translate-y-0.5"
                 >
                   <span>すべてのニュースを見る</span>
                   <ArrowRight className="w-5 h-5" />
@@ -456,7 +441,7 @@ export function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* --- Contact Section --- */}
       <section className="py-32 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
@@ -464,7 +449,6 @@ export function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
               className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4"
             >
               Contact
@@ -473,8 +457,8 @@ export function Home() {
               initial={{ opacity: 0, scaleX: 0 }}
               whileInView={{ opacity: 1, scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-16 h-1 bg-gradient-to-r from-sky-500 to-emerald-500 mx-auto rounded-full"
+              transition={{ delay: 0.2 }}
+              className="w-12 h-1 bg-sky-500 mx-auto rounded-full"
             />
           </div>
 
@@ -483,10 +467,10 @@ export function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-sky-50/50 to-emerald-50/30 p-10 rounded-3xl text-center"
+              className="bg-slate-50 p-10 rounded-[2rem] text-center hover:shadow-lg transition-shadow"
             >
               <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
-                <Phone className="w-7 h-7 text-sky-600" />
+                <Phone className="w-7 h-7 text-sky-500" />
               </div>
               <h3 className="text-sm text-slate-700 font-medium mb-3 tracking-wider uppercase">お電話</h3>
               <a href="tel:052-903-8273" className="text-2xl font-bold text-slate-900 hover:text-sky-600 transition-colors block mb-2">
@@ -500,10 +484,10 @@ export function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="bg-gradient-to-br from-sky-50/50 to-emerald-50/30 p-10 rounded-3xl text-center"
+              className="bg-slate-50 p-10 rounded-[2rem] text-center hover:shadow-lg transition-shadow"
             >
               <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
-                <Mail className="w-7 h-7 text-sky-600" />
+                <Mail className="w-7 h-7 text-sky-500" />
               </div>
               <h3 className="text-sm text-slate-700 font-medium mb-3 tracking-wider uppercase">メール</h3>
               <a href="mailto:daikoinfo@daiko-lsf.jp" className="text-lg font-bold text-slate-900 hover:text-sky-600 transition-colors break-all">
@@ -516,10 +500,10 @@ export function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-gradient-to-br from-sky-50/50 to-emerald-50/30 p-10 rounded-3xl text-center"
+              className="bg-slate-50 p-10 rounded-[2rem] text-center hover:shadow-lg transition-shadow"
             >
               <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
-                <MapPin className="w-7 h-7 text-sky-600" />
+                <MapPin className="w-7 h-7 text-sky-500" />
               </div>
               <h3 className="text-sm text-slate-700 font-medium mb-3 tracking-wider uppercase">所在地</h3>
               <p className="text-slate-900 font-medium leading-relaxed">
@@ -537,7 +521,7 @@ export function Home() {
           >
             <Link
               to="/contact"
-              className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-sky-600 to-emerald-600 text-white rounded-full font-medium hover:from-sky-700 hover:to-emerald-700 transition-all hover:shadow-lg hover:shadow-sky-200 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-3 px-10 py-4 bg-sky-500 text-white rounded-full font-medium hover:bg-sky-600 transition-all hover:shadow-lg hover:shadow-sky-200 hover:-translate-y-0.5"
             >
               <span>お問い合わせフォーム</span>
               <ArrowRight className="w-5 h-5" />

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import logoImage from '../assets/daiko-logo.png';
 
 const navigation = [
   { name: 'ホーム', href: '/' },
@@ -24,7 +25,7 @@ const navigation = [
   { name: 'お問い合わせ', href: '/contact' },
 ];
 
-export function ModernHeader() {
+export function ModernHeader({ isLoaded = true }: { isLoaded?: boolean }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [expandedSubmenu, setExpandedSubmenu] = useState<string | null>(null);
@@ -78,8 +79,17 @@ export function ModernHeader() {
       >
         <nav className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="flex h-20 sm:h-24 items-center justify-between">
-            <Link to="/" onClick={scrollToTop} className="text-slate-900 text-2xl sm:text-3xl tracking-tight z-50 group">
-              <span className="bg-gradient-to-r from-blue-900 via-blue-700 to-blue-600 bg-clip-text text-transparent transition-all duration-300 group-hover:from-blue-700 group-hover:via-blue-600 group-hover:to-blue-500">大幸</span>
+            <Link to="/" onClick={scrollToTop} className="relative z-50 block w-32 sm:w-40">
+              <motion.img 
+                src={logoImage}
+                alt="株式会社 大幸"
+                className="w-full h-auto object-contain"
+                layoutId="daiko-brand-logo"
+                transition={{
+                  duration: 1.2,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              />
             </Link>
 
             {/* Menu button - always visible */}
