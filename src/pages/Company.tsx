@@ -47,9 +47,9 @@ const equipmentList = [
 export function Company() {
   return (
     <div className="min-h-screen bg-white pt-20 sm:pt-24">
-      {/* Header: 緑のグラデーションで落ち着きを */}
+      {/* Header: 青と白でシンプルに */}
       <section className="py-16 sm:py-24 px-6 relative overflow-hidden bg-slate-50">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-100/50 rounded-full blur-[100px] -z-10" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-sky-100/50 rounded-full blur-[100px] -z-10" />
         
         <div className="max-w-5xl mx-auto text-center">
           <motion.div
@@ -60,7 +60,7 @@ export function Company() {
             <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6">
               会社情報
             </h1>
-            <div className="w-16 h-1 bg-emerald-500 mx-auto rounded-full mb-6" />
+            <div className="w-16 h-1 bg-sky-500 mx-auto rounded-full mb-6" />
             <p className="text-slate-600 leading-relaxed max-w-2xl mx-auto">
               1982年の創業以来、私たちは「信頼」を第一に歩んでまいりました。<br />
               確かな技術と誠実な対応で、お客様のビジネスを支え続けます。
@@ -69,7 +69,7 @@ export function Company() {
         </div>
       </section>
 
-      {/* Message Area: 緑のアクセント */}
+      {/* Message Area: 緑のアクセントは代表名のみ */}
       <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -80,7 +80,7 @@ export function Company() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                <span className="w-1 h-8 bg-emerald-500 rounded-full" />
+                <span className="w-1 h-8 bg-sky-500 rounded-full" />
                 代表メッセージ
               </h2>
               <div className="space-y-4 text-slate-600 leading-relaxed">
@@ -89,7 +89,7 @@ export function Company() {
                 </p>
                 <div className="pt-6 mt-6 border-t border-slate-100">
                   <p className="text-sm text-slate-500 mb-1">代表取締役</p>
-                  <p className="text-xl font-bold text-slate-900">大森 章弘</p>
+                  <p className="text-xl font-bold text-emerald-600">大森 章弘</p>
                 </div>
               </div>
             </motion.div>
@@ -98,7 +98,7 @@ export function Company() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="rounded-3xl overflow-hidden shadow-xl shadow-emerald-900/10"
+              className="rounded-3xl overflow-hidden" style={{boxShadow: '0 20px 80px -10px rgba(56, 189, 248, 0.25)'}}
             >
               <ImageWithFallback
                 src="https://images.unsplash.com/photo-1758873268631-fa944fc5cad2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjB3b3Jrc3BhY2UlMjB0ZWFtfGVufDF8fHx8MTc2MTcyNjY4Nnww&ixlib=rb-4.1.0&q=80&w=1080"
@@ -110,7 +110,7 @@ export function Company() {
         </div>
       </section>
 
-      {/* Company Info Table: 緑のアクセントカラー */}
+      {/* Company Info Table: 青のアクセントカラー */}
       <section className="py-20 px-6 bg-slate-50">
         <div className="max-w-4xl mx-auto">
           <motion.h2
@@ -133,7 +133,7 @@ export function Company() {
               <tbody>
                 {companyInfo.map((info, index) => (
                   <tr key={info.label} className="border-b border-slate-50 last:border-0">
-                    <th className="py-5 px-6 bg-emerald-50/30 text-emerald-900 font-medium w-1/3 sm:w-1/4">
+                    <th className="py-5 px-6 bg-sky-50/30 text-sky-900 font-medium w-1/3 sm:w-1/4">
                       {info.label}
                     </th>
                     <td className="py-5 px-6 text-slate-700">
@@ -147,7 +147,7 @@ export function Company() {
         </div>
       </section>
 
-      {/* Equipment: 緑のアクセント */}
+      {/* Equipment: 青のアクセント */}
       <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <motion.div
@@ -157,11 +157,11 @@ export function Company() {
             className="mb-12"
           >
             <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-              <Factory className="w-6 h-6 text-emerald-600" />
+              <Factory className="w-6 h-6 text-sky-600" />
               設備一覧
             </h2>
             <p className="text-slate-600">
-              最新の印刷機器と加工機械を完備し、高品質な製品をご提供いたします。
+              最新の���刷機器と加工機械を完備し、高品質な製品をご提供いたします。
             </p>
           </motion.div>
 
@@ -175,7 +175,7 @@ export function Company() {
                 transition={{ duration: 0.8, delay: idx * 0.1 }}
                 className="bg-slate-50 rounded-2xl p-8"
               >
-                <h3 className="text-lg font-bold text-slate-900 mb-6 pb-3 border-b-2 border-emerald-500">
+                <h3 className="text-lg font-bold text-slate-900 mb-6 pb-3 border-b-2 border-sky-500">
                   {equipment.category}
                 </h3>
                 <ul className="space-y-3">
@@ -184,7 +184,7 @@ export function Company() {
                       key={index}
                       className="text-slate-700 leading-relaxed flex items-start gap-3"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-sky-500 mt-2 flex-shrink-0" />
                       <span className="text-sm">{item}</span>
                     </li>
                   ))}
@@ -195,8 +195,8 @@ export function Company() {
         </div>
       </section>
 
-      {/* Access: 緑のアイコン */}
-      <section className="py-20 px-6 bg-emerald-50/30">
+      {/* Access: 青のアイコン */}
+      <section className="py-20 px-6 bg-slate-50">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -207,7 +207,7 @@ export function Company() {
             <h2 className="text-2xl font-bold text-slate-900 mb-6">
               アクセス
             </h2>
-            <div className="w-12 h-1 bg-emerald-500 mx-auto rounded-full" />
+            <div className="w-12 h-1 bg-sky-500 mx-auto rounded-full" />
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
@@ -217,8 +217,8 @@ export function Company() {
               viewport={{ once: true }}
               className="bg-white p-8 rounded-2xl text-center shadow-sm"
             >
-              <div className="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin className="w-7 h-7 text-emerald-600" />
+              <div className="w-14 h-14 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MapPin className="w-7 h-7 text-sky-600" />
               </div>
               <h3 className="text-sm text-slate-700 font-medium mb-3 tracking-wider uppercase">所在地</h3>
               <p className="text-slate-900 font-medium leading-relaxed">
@@ -234,11 +234,11 @@ export function Company() {
               transition={{ delay: 0.1 }}
               className="bg-white p-8 rounded-2xl text-center shadow-sm"
             >
-              <div className="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Phone className="w-7 h-7 text-emerald-600" />
+              <div className="w-14 h-14 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Phone className="w-7 h-7 text-sky-600" />
               </div>
               <h3 className="text-sm text-slate-700 font-medium mb-3 tracking-wider uppercase">電話</h3>
-              <a href="tel:052-903-8273" className="text-xl font-bold text-slate-900 hover:text-emerald-600 transition-colors block">
+              <a href="tel:052-903-8273" className="text-xl font-bold text-slate-900 hover:text-sky-600 transition-colors block">
                 052-903-8273
               </a>
               <p className="text-slate-600 text-sm mt-2">平日 9:00 - 18:00</p>
@@ -251,11 +251,11 @@ export function Company() {
               transition={{ delay: 0.2 }}
               className="bg-white p-8 rounded-2xl text-center shadow-sm"
             >
-              <div className="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Mail className="w-7 h-7 text-emerald-600" />
+              <div className="w-14 h-14 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Mail className="w-7 h-7 text-sky-600" />
               </div>
               <h3 className="text-sm text-slate-700 font-medium mb-3 tracking-wider uppercase">メール</h3>
-              <a href="mailto:daikoinfo@daiko-lsf.jp" className="text-base font-bold text-slate-900 hover:text-emerald-600 transition-colors break-all">
+              <a href="mailto:daikoinfo@daiko-lsf.jp" className="text-lg font-bold text-slate-900 hover:text-sky-600 transition-colors break-all">
                 daikoinfo@daiko-lsf.jp
               </a>
             </motion.div>

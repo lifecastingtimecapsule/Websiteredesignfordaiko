@@ -84,9 +84,9 @@ export function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 text-sky-700 text-xs font-medium mb-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-50 text-sky-700 text-[10px] font-medium mb-8 tracking-widest uppercase">
                 <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />
-                Printing Technology Since 1982
+                Since 1982
               </div>
               
               <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8 text-slate-900">
@@ -124,7 +124,7 @@ export function Home() {
               transition={{ duration: 1, delay: 0.2 }}
               className="relative hidden lg:block"
             >
-              <div className="relative rounded-[3rem] overflow-hidden shadow-2xl shadow-sky-900/10">
+              <div className="relative rounded-[3rem] overflow-hidden" style={{boxShadow: '0 20px 80px -10px rgba(56, 189, 248, 0.25)'}}>
                 <ImageWithFallback
                   src="https://images.unsplash.com/photo-1562564013-0971ad28b7a4?auto=format&fit=crop&q=80&w=1000"
                   alt="Printing Technology"
@@ -154,8 +154,8 @@ export function Home() {
                 <div className="text-5xl lg:text-6xl font-bold mb-2 text-emerald-400">
                   {stat.value}
                 </div>
-                <div className="text-slate-400 text-sm uppercase tracking-wider">{stat.label}</div>
-                <div className="text-slate-500 text-xs mt-1">{stat.sub}</div>
+                <div className="text-white text-base uppercase tracking-wide">{stat.label}</div>
+                <div className="text-slate-500 text-[10px] mt-1.5 tracking-widest uppercase">{stat.sub}</div>
               </motion.div>
             ))}
           </div>
